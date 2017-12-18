@@ -14,26 +14,29 @@ else:
 
 
 #Global Variables
-ActivePlayer=1
-p1=[] #what player 1 selects
-p2=[] #what player 2 selects
+computer = 'O'
+opponent = 'X'
+ActivePlayer = opponent
+p={} #what current player  selects
 
 root = Tk()
+root.resizable(width=False, height=False)
 root.title("The Undefeatable Tic Tac Toe Game")
+
 but = {}
 def Gui():
 	for x in range(3):
 		for y in range(3):
-			handler = lambda x=x,y=y: ButtonClick(x,y)
-			but[x,y]= Button(root,  command=handler, width=15, height=10)
+			func = lambda x=x,y=y: ButtonClick(x,y)
+			but[x,y]= Button(root,  command=func, width=15, height=10)
 			but[x,y].grid(row=y, column=x)
 
-	handler=lambda : PlayAgain()
-	button = Button(root, text='Play Again', command=handler)
+	func=lambda : PlayAgain()
+	button = Button(root, text='Play Again', command=func)
 	button.grid(row=4, column=0, columnspan=1, sticky="WE")
 	
-	handler=lambda : QuitGame()
-	button = Button(root, text='Quit Game', command=handler)
+	func=lambda : QuitGame()
+	button = Button(root, text='Quit Game', command=func)
 	button.grid(row=4, column=2, columnspan=1, sticky="WE")
 			
 def QuitGame():
@@ -44,21 +47,30 @@ def PlayAgain():
 
 # function
 def ButtonClick(y,x):
-	global ActivePlayer, p1, p2
-	if (ActivePlayer==1):
-		SetLayout(x,y,"X")
+	global ActivePlayer, p
+	if (ActivePlayer==opponent):
+		SetLayout(x,y,ActivePlayer)
+		p[x,y] = ActivePlayer
+		print(p[x,y], x, y)
 		root.title("The Undefeatable Tic Tac Toe Game Player: X")
-		ActivePlayer=2
+		ActivePlayer= computer
+
 	else:
-		SetLayout(x,y,"O")
+		SetLayout(x,y,ActivePlayer)
+		p[x,y] = computer
+		print(p[x,y], x, y)
 		root.title("The Undefeatable Tic Tac Toe Game Player: O")
-		ActivePlayer=1		
+		ActivePlayer=opponent
+
+	#CheckWinner()		
 
 def SetLayout(y, x, PlayerSymbol):
 	but[x,y]['text'] = PlayerSymbol
 	but[x,y]['state'] = 'disabled'
 	but[x,y]['background'] ='black'
 
+#def CheckWinner():
+	#row
 
 
 
