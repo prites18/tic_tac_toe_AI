@@ -21,13 +21,26 @@ p2=[] #what player 2 selects
 root = Tk()
 root.title("The Undefeatable Tic Tac Toe Game")
 but = {}
-for x in range(3):
-	for y in range(3):
-		handler = lambda x=x,y=y: ButtonClick(x,y)
-		bu = Button(root,  command=handler, width=15, height=10)
-		bu.grid(row=y, column=x)
-		but[x,y] = bu
+def Gui():
+	for x in range(3):
+		for y in range(3):
+			handler = lambda x=x,y=y: ButtonClick(x,y)
+			but[x,y]= Button(root,  command=handler, width=15, height=10)
+			but[x,y].grid(row=y, column=x)
+
+	handler=lambda : PlayAgain()
+	button = Button(root, text='Play Again', command=handler)
+	button.grid(row=4, column=0, columnspan=1, sticky="WE")
 	
+	handler=lambda : QuitGame()
+	button = Button(root, text='Quit Game', command=handler)
+	button.grid(row=4, column=2, columnspan=1, sticky="WE")
+			
+def QuitGame():
+	sys.exit()
+	
+def PlayAgain():
+	Gui()
 
 # function
 def ButtonClick(y,x):
@@ -44,10 +57,10 @@ def ButtonClick(y,x):
 def SetLayout(y, x, PlayerSymbol):
 	but[x,y]['text'] = PlayerSymbol
 	but[x,y]['state'] = 'disabled'
+	but[x,y]['background'] ='black'
 
 
 
 
-
-
+Gui()
 root.mainloop()
