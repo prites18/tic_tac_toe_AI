@@ -49,28 +49,30 @@ def ButtonClick(y,x):
 		turns=turns+1
 		SetLayout(x,y,ActivePlayer)
 		p[x,y] = ActivePlayer
-		root.title("The Undefeatable Tic Tac Toe Game Player: X")
 		a,b=CheckWinner(x,y)
 		if a:
 			turns=0
 			winner(ActivePlayer,b)
 		ActivePlayer= computer
+		root.title("The Undefeatable Tic Tac Toe Game Player: {}".format(ActivePlayer))
+
 	else:
 		turns=turns+1
 		SetLayout(x,y,ActivePlayer)
 		p[x,y] = computer
-		root.title("The Undefeatable Tic Tac Toe Game Player: O")
 		a,b=CheckWinner(x,y)
 		if a:
 			turns=0
 			winner(ActivePlayer,b)
 		ActivePlayer= opponent
+		root.title("The Undefeatable Tic Tac Toe Game Player: {}".format(ActivePlayer))
 		
 	#check for draw
 	if turns==9:
 		print('tie')
 		messagebox.showinfo(title="Whoaa !!", message="The game ends in a draw. Play again.")
 		turns=0
+		root.title("The Undefeatable Tic Tac Toe Game")
 		PlayAgain()
 
 def SetLayout(y, x, PlayerSymbol):
@@ -83,6 +85,8 @@ def winner(ActivePlayer, winning):
 	for x,y in winning:
 		but[y,x]['disabledforeground'] = 'red'
 	messagebox.showinfo(title="Congrats", message="Player {} has won".format(ActivePlayer))
+	root.title("The Undefeatable Tic Tac Toe Game")
+
 	PlayAgain()
 
 def CheckWinner(x,y):
