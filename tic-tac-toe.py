@@ -18,6 +18,7 @@ computer = 'O'
 opponent = 'X'
 ActivePlayer = opponent
 p={} #what current player  selects
+turns=0
 
 root = Tk()
 root.resizable(width=False, height=False)
@@ -49,23 +50,34 @@ def PlayAgain():
 
 # function
 def ButtonClick(y,x):
-	global ActivePlayer, p
+	global ActivePlayer, p, turns
 	if (ActivePlayer==opponent):
+		turns=turns+1
 		SetLayout(x,y,ActivePlayer)
 		p[x,y] = ActivePlayer
 		root.title("The Undefeatable Tic Tac Toe Game Player: X")
 		a,b=CheckWinner(x,y)
 		if a:
+			turns=0
 			winner(ActivePlayer,b)
 		ActivePlayer= computer
 	else:
+		turns=turns+1
 		SetLayout(x,y,ActivePlayer)
 		p[x,y] = computer
 		root.title("The Undefeatable Tic Tac Toe Game Player: O")
 		a,b=CheckWinner(x,y)
 		if a:
+			turns=0
 			winner(ActivePlayer,b)
 		ActivePlayer=opponent
+
+	if turns==9:
+		print('tie')
+		messagebox.showinfo(title="Whoaa !!", message="The game ends in a draw. Play again.")
+		PlayAgain()
+
+
 
 def SetLayout(y, x, PlayerSymbol):
 	but[x,y]['text'] = PlayerSymbol
