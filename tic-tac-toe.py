@@ -40,6 +40,7 @@ def QuitGame():
 	sys.exit()
 	
 def PlayAgain():
+	root.title("The Undefeatable Tic Tac Toe Game")
 	Gui()
 
 # function
@@ -72,7 +73,6 @@ def ButtonClick(y,x):
 		print('tie')
 		messagebox.showinfo(title="Whoaa !!", message="The game ends in a draw. Play again.")
 		turns=0
-		root.title("The Undefeatable Tic Tac Toe Game")
 		PlayAgain()
 
 def SetLayout(y, x, PlayerSymbol):
