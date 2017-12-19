@@ -2,7 +2,7 @@
 Version=1.0
 Name=TicTacToe
 Comment=The undefeatable tic tac toe game
-Exec=python3 ./tic-tac-toe.py
+Exec=python3 tic-tac-toe.py
 Path=/home/prites/projects/tic_tac_toe_AI/
 Icon=/usr/share/icons/Humanity/apps/32/access.svg
 Terminal=false
