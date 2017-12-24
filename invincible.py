@@ -1,6 +1,6 @@
-# coding=UTF8 
-#  Minimax AI for python TicTacToe game 
+# coding=UTF8
+#  Minimax AI for python TicTacToe game
 # Author: Pritesh Ranjan <pranjan341@gmail.com>
 
-class invincible:
-    
+class Invincible:
+    pass

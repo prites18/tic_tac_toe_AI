@@ -1,4 +1,4 @@
-# coding=UTF8 
+# coding=UTF8
 # Python TicTacToe game with tkinter for gui and minimax AI
 # Author: Pritesh Ranjan <pranjan341@gmail.com>
 
@@ -13,8 +13,8 @@ class TicTacToe:
     size = 3
 
     def __init__(self):
-        self.active_player = self.opponent
         self.empty = "*"
+        self.active_player = self.opponent
         self.move_id = {}
         self.box = {}
         self.winning = []
@@ -33,14 +33,15 @@ class TicTacToe:
         for x in range(self.size):
             for y in range(self.size):
                 button_clicked = lambda x=x, y=y: self.on_button_click(x, y)
-                self.box[x, y] = Button(self.game,  text=self.empty, background="white", command=button_clicked, width=15, height=10)
+                self.box[x, y] = Button(self.game, text=self.empty, background="white", command=button_clicked, width=15, height=10)
                 self.box[x, y].grid(row=x, column=y)
                 self.move_id[x, y] = self.empty
 
     def on_button_click(self, x, y):
         self.set_layout(x, y)
         self.move_id[x, y] = self.active_player
-        self.check_winner(x,y)
+        if self.check_winner(x, y):
+            return True
         if self.active_player == self.opponent:
             self.active_player = self.computer
         else:
@@ -78,23 +79,28 @@ class TicTacToe:
             self.winning = []
             self.winning = ((0, y), (1, y), (2, y))
             self.announce_winner()
+            return True
         #row
         if (self.move_id[x, 0] == self.move_id[x, 1] == self.move_id[x, 2] == self.active_player):
             self.winning = []
             self.winning = ((x, 0), (x, 1), (x, 2))
             self.announce_winner()
+            return True
         #diagonal1
         if (x == y and self.move_id[0, 0] == self.move_id[1, 1] == self.move_id[2, 2] == self.active_player):
             self.winning = []
             self.winning = ((0,0), (1,1), (2,2))
             self.announce_winner()
+            return True
         #diagonal2
         if (x + y == 2 and self.move_id[0, 2] == self.move_id[1, 1] == self.move_id[2, 0] == self.active_player):
             self.winning = []
             self.winning = ((0, 2), (1, 1), (2, 0))
             self.announce_winner()
+            return True
         else:
             self.check_draw()
+            return False
 
     def announce_winner(self):
         print('winner is {}'.format(self.active_player))
@@ -109,4 +115,4 @@ class TicTacToe:
         self.game.mainloop()
 
 if __name__ == '__main__':
-  TicTacToe().mainloop()
+    TicTacToe().mainloop()
