@@ -33,7 +33,7 @@ class TicTacToe:
         for x in range(self.size):
             for y in range(self.size):
                 button_clicked = lambda x=x, y=y: self.on_button_click(x, y)
-                self.box[x, y] = Button(self.game, text=self.empty, command=button_clicked, width=15, height=10)
+                self.box[x, y] = Button(self.game,  text=self.empty, background="white", command=button_clicked, width=15, height=10)
                 self.box[x, y].grid(row=x, column=y)
                 self.move_id[x, y] = self.empty
 
@@ -48,9 +48,9 @@ class TicTacToe:
         self.game.title("The invincible Tic Tac Toe Game Player: {}".format(self.active_player))
 
     def set_layout(self, x, y):
-        self.box[x, y]['text'] = self.active_player
-        self.box[x, y]['state'] = 'disabled'
-        self.box[x, y]['background'] = 'light blue'
+        self.box[x, y]["text"] = self.active_player
+        self.box[x, y]["state"] = "disabled"
+        self.box[x, y]["background"] = "black"
 
     def play_again(self):
         self.game.title("The invincible Tic-Tac-Toe")
@@ -58,7 +58,7 @@ class TicTacToe:
         self.buttons_setup()
 
     def quit_game(self):
-        print(self.move_id)
+        #print(self.move_id)
         sys.exit()
     
     def check_draw(self):
@@ -66,7 +66,7 @@ class TicTacToe:
             for y in range(self.size):
                 if self.move_id[x, y] == self.empty:
                     return False
-        print('tie')
+        print("tie")
         messagebox.showinfo(title="Whoaa !!", message="The game ends in a draw. Play again.")
         self.play_again()
                
