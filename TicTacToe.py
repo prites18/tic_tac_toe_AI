@@ -3,6 +3,7 @@
 # Author: Pritesh Ranjan <pranjan341@gmail.com>
 
 import sys
+from random import randint
 from tkinter import Tk, Button
 from tkinter import messagebox
 #import invincible
@@ -44,6 +45,7 @@ class TicTacToe:
             return True
         if self.active_player == self.opponent:
             self.active_player = self.computer
+            self.autoplay()
         else:
             self.active_player = self.opponent
         self.game.title("The invincible Tic Tac Toe Game Player: {}".format(self.active_player))
@@ -109,6 +111,15 @@ class TicTacToe:
         messagebox.showinfo(title="Congrats", message="Player {} has won".format(self.active_player))
         self.game.title("The invincible Tic Tac Toe Game")
         self.play_again()
+
+    def autoplay(self):
+        empty_boxes = []
+        for x in range(self.size):
+            for y in range(self.size):
+                if self.move_id[x, y] == self.empty:
+                    empty_boxes.append((x, y))
+        rand_index = randint(0, len(empty_boxes)-1)
+        self.on_button_click(*empty_boxes[rand_index])
 
 
     def mainloop(self):
