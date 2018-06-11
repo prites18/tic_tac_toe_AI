@@ -1,0 +1,4 @@
+I need to apply Minimum Error Rate Training but could not find a any good and simple explanation. I went through "Minimum Error Rate Training in 
+Statistical Machine Translation by Franz Josef Och" but could not understand very well. Also I could not find any explanation even after lots of 
+googling. I would be very grateful if some one could explain the working of MERT mathematically or using python code or point to some good tutorial.
+Thank you for your time.
